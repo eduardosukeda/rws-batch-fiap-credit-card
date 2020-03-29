@@ -21,7 +21,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 
-import br.com.fiap.rwsbatchfiapcreditcard.entity.Aluno;
+import br.com.fiap.rwsbatchfiapcreditcard.entity.Student;
 
 @SpringBootApplication
 @EnableBatchProcessing
@@ -32,37 +32,37 @@ public class RwsBatchFiapCreditCardApplication {
 	}
 
 	@Bean
-	public FlatFileItemReader<Aluno> itemReader(@Value("${file.input}") Resource resource) {
-		return new FlatFileItemReaderBuilder<Aluno>().delimited().delimiter(";").names("name", "rm").resource(resource)
-				.targetType(Aluno.class).name("File Item Reader").build();
+	public FlatFileItemReader<Student> itemReader(@Value("${file.input}") Resource resource) {
+		return new FlatFileItemReaderBuilder<Student>().delimited().delimiter(";").names("name", "rm").resource(resource)
+				.targetType(Student.class).name("File Item Reader").build();
 	}
 
 	@Bean
-	public ItemProcessor<Aluno, Aluno> itemProcessor() {
-		return aluno -> {
-			aluno.setName(aluno.getName().toUpperCase().trim());
-			aluno.setRm(aluno.getRm());
-			return aluno;
+	public ItemProcessor<Student, Student> itemProcessor() {
+		return student -> {
+			student.setName(student.getName().toUpperCase().trim());
+			student.setRm(student.getRm());
+			return student;
 		};
 	}
 
 	@Bean
-	public ItemWriter<Aluno> itemWriter(DataSource dataSource) {
-		return new JdbcBatchItemWriterBuilder<Aluno>().beanMapped().dataSource(dataSource)
-				.sql("insert into TB_ALUNO (name, rm) values (:name, :rm)").build();
+	public ItemWriter<Student> itemWriter(DataSource dataSource) {
+		return new JdbcBatchItemWriterBuilder<Student>().beanMapped().dataSource(dataSource)
+				.sql("insert into TB_STUDENT (name, rm, have_card) values (:name, :rm, false)").build();
 	}
 
 	@Bean
 	@Qualifier("stepchunk")
-	public Step stepChunk(StepBuilderFactory stepBuilderFactory, ItemReader<Aluno> itemReader,
-			ItemProcessor<Aluno, Aluno> itemProcessor, ItemWriter<Aluno> itemWriter) {
-		return stepBuilderFactory.get("step processar Aluno").<Aluno, Aluno>chunk(2).reader(itemReader)
+	public Step stepChunk(StepBuilderFactory stepBuilderFactory, ItemReader<Student> itemReader,
+			ItemProcessor<Student, Student> itemProcessor, ItemWriter<Student> itemWriter) {
+		return stepBuilderFactory.get("step processar Student").<Student, Student>chunk(2).reader(itemReader)
 				.processor(itemProcessor).writer(itemWriter).build();
 	}
 
 	@Bean
 	public Job job(JobBuilderFactory jobBuilderFactory, @Qualifier("stepchunk") Step step) {
-		return jobBuilderFactory.get("job processar Aluno").start(step).build();
+		return jobBuilderFactory.get("job processar Student").start(step).build();
 	}
 
 }
