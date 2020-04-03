@@ -39,7 +39,7 @@ Acesso com Swagger - https://rws-batch-fiap-credit-card.herokuapp.com/swagger-ui
 
 Login - rws
 
-Senha - rws-batch-fiap-credit-card
+Senha - rwsbatchfiapcreditcard
 
 ## Swagger
 Pode ser acessado através da seguinte URL: localhost:8080/swagger-ui.html
