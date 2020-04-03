@@ -14,7 +14,7 @@ public class StudentService {
 	@Autowired
 	StudentRepository studentRepository;
 
-	public Student insert(Student student) {
+	public Student create(Student student) {
 		return studentRepository.save(student);
 	}
 
@@ -28,7 +28,7 @@ public class StudentService {
 		return studentRepository.save(newStudent);
 	}
 
-	public List<Student> list() {
+	public List<Student> findAll() {
 		return studentRepository.findAll();
 	}
 

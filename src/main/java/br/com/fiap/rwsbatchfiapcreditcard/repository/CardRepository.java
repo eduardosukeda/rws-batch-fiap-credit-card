@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface CardRepository extends JpaRepository<Card, Integer> {
 
-	public List<Card> findAllByStudent(Student aluno);
+	public List<Card> findAllByStudent(Student student);
 }

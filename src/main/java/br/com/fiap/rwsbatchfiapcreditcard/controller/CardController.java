@@ -33,13 +33,13 @@ public class CardController {
 	}
 
 	@GetMapping
-	public List<Card> list(@RequestParam Integer idStudent) {
+	public List<Card> findAllByStudent(@RequestParam Integer idStudent) {
 		return cardService.findAllByStudent(idStudent);
 	}
 
 	@GetMapping("/{id}/extrato")
 	@ResponseBody
-	public void getExtrato(@RequestParam Integer id, HttpServletResponse response) throws IOException {
+	public void getExtract(@RequestParam Integer id, HttpServletResponse response) throws IOException {
 		response.setHeader("Content-disposition", "attachment; filename=extrato.xlsx");
 		GeneralUtils.extractGenerate(purchaseService.listByCard(id)).write(response.getOutputStream());
 	}

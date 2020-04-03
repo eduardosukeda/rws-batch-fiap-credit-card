@@ -9,5 +9,5 @@ import java.util.List;
 
 public interface PurchaseRepository extends JpaRepository<Purchase, Integer> {
 
-	public List<Purchase> findByCard(Card cartao);
+	public List<Purchase> findByCard(Card card);
 }

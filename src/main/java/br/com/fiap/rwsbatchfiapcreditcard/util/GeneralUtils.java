@@ -35,9 +35,9 @@ public class GeneralUtils {
 		cell = row.createCell(2);
 		cell.setCellValue("Date");
 
-		int comprasIndex = 1;
+		int purchasesIndex = 1;
 		for (Purchase purchase : purchases) {
-			row = sheet.createRow(comprasIndex);
+			row = sheet.createRow(purchasesIndex);
 			cell = row.createCell(0);
 			cell.setCellValue(purchase.getDescription());
 			cell = row.createCell(1);
@@ -45,7 +45,7 @@ public class GeneralUtils {
 			cell = row.createCell(2);
 			cell.setCellValue(formattedDate(purchase.getData()));
 
-			comprasIndex++;
+			purchasesIndex++;
 		}
 
 		FileOutputStream fileOut = new FileOutputStream(excelFileName);

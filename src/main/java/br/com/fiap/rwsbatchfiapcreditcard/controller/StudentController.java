@@ -17,7 +17,7 @@ public class StudentController {
 
 	@PostMapping
 	public Student create(@RequestBody Student student) {
-		return studentService.insert(student);
+		return studentService.create(student);
 	}
 
 	@DeleteMapping("/{id}")
@@ -26,9 +26,9 @@ public class StudentController {
 	}
 
 	@GetMapping
-	public List<Student> list(@RequestParam(required = false) Boolean haveCard) {
+	public List<Student> findAll(@RequestParam(required = false) Boolean haveCard) {
 		if (haveCard == null) {
-			return studentService.list();
+			return studentService.findAll();
 		}
 
 		return studentService.listByCard(haveCard);
