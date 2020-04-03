@@ -2,15 +2,16 @@
 
 ## Pré-requisitos para execução do rws-batch-fiap-credit-card
 
-1- Para executar o projeto é necessário ter o JRE 8 ou JDK 8 instalado.
+1 - Para executar o projeto é necessário ter o JRE 8 ou JDK 8 instalado.
 
-2- Possuir uma IDE para execução.
+2 - Possuir uma IDE para execução.
 
 
 ## Spring Framework
 
 - Spring Web
 - Spring Data JPA
+- Spring Security
 - H2 Database
 - JUnit (testes)
 - Swagger (documentação)
@@ -34,6 +35,11 @@ Acesso com Swagger - https://rws-batch-fiap-credit-card.herokuapp.com/swagger-ui
 
 4 - Run
 
+5 - A aplicação possui o módulo Spring Security implementado, para acessar é necessário informar um login e senha basic auth.
+
+Login - rws
+
+Senha - rws-batch-fiap-credit-card
 
 ## Swagger
 Pode ser acessado através da seguinte URL: localhost:8080/swagger-ui.html
