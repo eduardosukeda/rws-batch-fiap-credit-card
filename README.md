@@ -48,9 +48,3 @@ Pode ser acessado através da seguinte URL: localhost:8080/swagger-ui.html
 ## Massa para teste
 
 A massa para realizar teste unitários se encontra em formar JSON na pasta src/main/resource/massa/teste. Para realizar os teste unitários pode ser usado o swagger ou Postman para requisições Rest.
-
-
-## RM's
-Eduardo Sukeda de Arruda - 335537
-
-André Silva Brito - 335444
